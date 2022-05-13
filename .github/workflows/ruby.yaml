@@ -9,6 +9,8 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      BUNDLE_WITH: development
     strategy:
       matrix:
         ruby-version: ['2.5', '2.6', '2.7', '3.0', '3.1']
