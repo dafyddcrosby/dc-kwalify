@@ -1,5 +1,5 @@
 ### copyright(c) 2006 kuwata-lab.com all rights reserved.
 
 module Kwalify
-  RELEASE = '0.7.3'
+  RELEASE = '1.0.0'
 end
