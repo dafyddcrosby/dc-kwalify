@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
+gemspec
 
 group :development, optional: true do
-  gem 'test-unit'
   gem 'rubocop'
+  gem 'test-unit'
 end
