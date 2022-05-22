@@ -45,7 +45,7 @@ if $0 == __FILE__
   require 'test-yaml-parser.rb'
   require 'test-rule.rb'
   require 'test-validator.rb'
-  #require 'test-metavalidator.rb'
+  require 'test-metavalidator.rb'
   require 'test-databinding.rb'
   require 'test-main.rb'
   require 'test-action.rb'
