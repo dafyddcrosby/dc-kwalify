@@ -18,12 +18,12 @@ class ValidatorTest < Test::Unit::TestCase
   ## execute test
   def _test()
     return if $target && $target != @name
-    ## Syck parser
+    ## Psych parser
     schema = YAML.load(@schema)
     validator = Kwalify::Validator.new(schema)
     error2 = @error.gsub(/\(line \d+\)/, '')
-    _test_by_syck_parser(validator, @valid,   ''    )
-    _test_by_syck_parser(validator, @invalid, error2)
+    _test_by_psych_parser(validator, @valid,   ''    )
+    _test_by_psych_parser(validator, @invalid, error2)
     ## Kwalify::YamlParser
     schema = Kwalify::YamlParser.new(@schema).parse()
     validator = Kwalify::Validator.new(schema)
@@ -77,10 +77,10 @@ class ValidatorTest < Test::Unit::TestCase
   end
 
 
-  def _test_by_syck_parser(validator, input, expected)
+  def _test_by_psych_parser(validator, input, expected)
     document = YAML.load(input)
     error_list  = validator.validate(document)
-    expected = expected.to_a.sort.join()
+    expected = expected.split("\n").sort.join("\n")
     actual = error_list.collect { |e|
       "%-20s: [%s] %s\n" % [e.error_symbol.inspect, e.path, e.message]
     }.sort.join()

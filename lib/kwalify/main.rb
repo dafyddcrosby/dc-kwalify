@@ -431,7 +431,7 @@ module Kwalify
 
 
     def _domain_type?(doc)
-      klass = defined?(YAML::DomainType) ? YAML::DomainType : YAML::Syck::DomainType
+      klass = YAML::DomainType
       return doc.is_a?(klass)
     end
 
