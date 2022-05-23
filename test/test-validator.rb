@@ -19,7 +19,7 @@ class ValidatorTest < Test::Unit::TestCase
   def _test()
     return if $target && $target != @name
     ## Psych parser
-    schema = YAML.load(@schema)
+    schema = YAML.load(@schema, aliases: true)
     validator = Kwalify::Validator.new(schema)
     error2 = @error.gsub(/\(line \d+\)/, '')
     _test_by_psych_parser(validator, @valid,   ''    )
@@ -78,7 +78,7 @@ class ValidatorTest < Test::Unit::TestCase
 
 
   def _test_by_psych_parser(validator, input, expected)
-    document = YAML.load(input)
+    document = YAML.safe_load(input, permitted_classes: [Date], aliases: true)
     error_list  = validator.validate(document)
     expected = expected.split("\n").sort.join("\n")
     actual = error_list.collect { |e|
