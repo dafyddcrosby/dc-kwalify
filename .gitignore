@@ -3,3 +3,7 @@ Gemfile.lock
 vendor
 .bundle
 tmp.dir
+.overcommit.yml
+.rvmrc
+.ruby-version
+o_r

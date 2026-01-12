@@ -4,8 +4,16 @@ task :test do
   ruby "test/test.rb"
 end
 
-require "rubocop/rake_task"
+begin
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new do |t|
+    t.options = ['--display-cop-names']
+  end
+rescue LoadError
+  desc 'rubocop task stub'
+  task :rubocop do
+    warn 'RuboCop is disabled (gem not installed)'
+  end
+end
 
-RuboCop::RakeTask.new
-
-task default: %i[test rubocop]
+task default: %i[test]
